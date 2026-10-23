@@ -1,8 +1,11 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+jest.mock("./firebase", () => ({ isConfigured: false, auth: {}, db: {} }));
+
+test("opens in local mode and offers to start a production", () => {
+  localStorage.clear();
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByText(/Plan the shoot before you shoot it/i)).toBeInTheDocument();
+  expect(screen.getByText(/Explore a sample/i)).toBeInTheDocument();
 });

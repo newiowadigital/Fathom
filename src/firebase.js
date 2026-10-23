@@ -16,6 +16,10 @@ const firebaseConfig = {
   appId: "YOUR_APP_ID"
 };
 
+/* While the placeholder config is untouched, Fathom runs in local mode:
+   no sign-in, data kept in this browser. Replace the values above to enable accounts + cloud sync. */
+export const isConfigured = !String(firebaseConfig.apiKey).startsWith("YOUR_");
+
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
